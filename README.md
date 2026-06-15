@@ -71,7 +71,7 @@ Initial tools:
 
 The assistant does the reasoning. Signal provides clean local context.
 
-> **Status:** design stage. The tool contracts live in [`docs/mcp.md`](docs/mcp.md). Before the server is built, the documented output schema (`group`, `activity`, `discussionUrl`, `tags`) still needs to be reconciled with the fields the collector actually writes today (`feed`, `score`/`comments`, `permalink`, `matchedKeywords`). See the cache shape in `.ai-signal/hn-cache.json`.
+> **Status:** implemented as a zero-dependency stdio MCP server in [`src/mcp/`](src/mcp/). All five tools are live and read the local cache (read-only, no fetching during a request). Run it with `npm run mcp` and see [`docs/mcp.md`](docs/mcp.md) for the projected schema and client configuration.
 
 ## Install
 
@@ -150,10 +150,11 @@ If you use a package manager, prefer `pnpm`.
 
 ## Roadmap
 
-- Add the MCP server and local tools.
+- ~~Add the MCP server and local tools.~~ Done — see [`src/mcp/`](src/mcp/).
 - Add editable feed configuration from the extension UI.
 - Add optional `ai-voice` notifications for important refresh events.
 - Add more public sources that fit the same local-cache model.
+- Localize the panel UI (action labels are currently Spanish).
 - Package the VS Code extension when the product surface stabilizes.
 
 ## Public Repo Status
@@ -161,9 +162,9 @@ If you use a package manager, prefer `pnpm`.
 This is publishable as an early prototype, with clear caveats:
 
 - Hacker News is the only active collector today.
-- The MCP server is the next architectural step.
+- The MCP server is implemented (read-only, stdio) and reads the same local cache.
 - The feed taxonomy is personal and opinionated.
-- There is no Marketplace packaging yet.
+- Marketplace packaging is not published yet (a local `.vsix` build works).
 
 ## License
 

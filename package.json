@@ -77,8 +77,9 @@
   },
   "scripts": {
     "hn:smoke": "node scripts/hn-smoke.mjs",
+    "mcp": "node src/mcp/server.mjs",
     "test": "node --test",
-    "check": "node --check scripts/hn-smoke.mjs && node --check src/extension.cjs && node --test"
+    "check": "node --check scripts/hn-smoke.mjs && node --check src/extension.cjs && node --check src/mcp/server.mjs && node --test"
   },
   "packageManager": "pnpm@10.0.0"
 }

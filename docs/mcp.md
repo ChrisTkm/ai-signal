@@ -96,37 +96,69 @@ The assistant should reason over Signal's structured output.
 
 Signal collects, filters, ranks, and links. The AI assistant explains why the signals matter in the user's current context.
 
-## Implementation Notes (open before building)
+## Implementation
 
-The server is not implemented yet. These are the gaps to close first, so the design and the real cache do not drift apart.
+The server is implemented as a **zero-dependency stdio MCP server**, consistent with the project's no-runtime-dependency stance. It speaks newline-delimited JSON-RPC 2.0 and handles `initialize`, `tools/list`, and `tools/call`.
 
-### 1. Reconcile the output schema with the actual cache
+```text
+src/mcp/
+  server.mjs   # stdio JSON-RPC transport + dispatch
+  tools.mjs    # pure tool logic + projection (unit tested)
+  cache.mjs    # reads .ai-signal/hn-cache.json and config/feeds.sample.json
+  tools.test.mjs
+```
 
-The examples above use field names that the collector does not currently produce. Map them before freezing the tool contract:
+It reads the cache fresh on every `tools/call`, so refreshes triggered from VS Code are picked up without restarting the server. It never fetches from public sources during a request.
 
-| Doc field        | Cache field (`hn-cache.json`)            |
-| ---------------- | ---------------------------------------- |
-| `group`          | `feed`                                   |
-| `activity`       | derived: `score + comments * 3`          |
-| `tags`           | `matchedKeywords` (no separate tags yet) |
-| `discussionUrl`  | `permalink`                              |
-| `ageHours`       | `ageHours` (already present)             |
-| `importance`     | `importance` (already present)           |
+### Schema projection
 
-Either change the collector to emit the documented names, or have the MCP layer project the cache into the public shape. Projecting in the MCP layer keeps the cache faithful to the source and is the recommended option.
+The cache stays faithful to the source; the MCP layer projects each item into the documented public shape (`tools.mjs` → `projectItem`):
 
-### 2. Group identifiers
+| Public field    | Cache field                              |
+| --------------- | ---------------------------------------- |
+| `group`         | `feed`                                    |
+| `groupSlug`     | `toSlug(feed)` (e.g. `cortex-feed`)       |
+| `activity`      | derived: `score + comments * 3`           |
+| `tags`          | `matchedKeywords`                         |
+| `discussionUrl` | `permalink`                               |
+| `ageHours`      | `ageHours`                                |
+| `importance`    | `importance`                              |
 
-`signal_get_top` takes `"group": "cortex-feed"` (kebab-case) but the cache stores display names (`"Cortex Feed"`). Pick one canonical id and expose the display name separately, or accept both and normalize.
+Resolved design questions:
 
-### 3. `period` semantics
+- **Group identifiers** — tools accept either the display name (`Cortex Feed`) or the slug (`cortex-feed`); both are normalized.
+- **`period`** — derived at query time from `ageHours` (`hour`/`day`/`week`/`month`/`all`); the cache remains a single rolling snapshot.
+- **Freshness / missing cache** — every response carries a `meta` block with `staleMinutes` and `itemCount`. When no cache exists, `meta.available` is `false` with a hint instead of an error.
 
-`period` (`day` / `week`) is documented but the cache has no period dimension — it is a single rolling snapshot. The server must derive periods from `ageHours`/`createdUtc` at query time, or the field should be dropped from v1.
+## Running the server
 
-### 4. Cache freshness and contract
+```powershell
+npm run mcp
+# or directly:
+node src/mcp/server.mjs
+```
 
-The server reads `.ai-signal/hn-cache.json` and must not fetch on each request. Decide and document: behavior when the cache is missing or stale (return empty + a `staleMinutes` hint vs. error), and the exact path resolution (extension writes the cache under its own `extensionRoot`).
+Paths can be overridden with environment variables:
 
-### 5. Suggested shape
+- `SIGNAL_CACHE_PATH` — absolute path to `hn-cache.json` (default: `<repo>/.ai-signal/hn-cache.json`).
+- `SIGNAL_CONFIG_PATH` — absolute path to the feeds config (default: `<repo>/config/feeds.sample.json`).
 
-A read-only stdio MCP server (`@modelcontextprotocol/sdk`) under `src/mcp/` that imports the existing pure core (`scripts/lib/signal-core.mjs`) for any ranking/search filtering, so the VS Code panel and the MCP server stay consistent.
+### Client configuration
+
+Any MCP client that launches a stdio server works. Example entry:
+
+```json
+{
+  "mcpServers": {
+    "ai-signal": {
+      "command": "node",
+      "args": ["C:/dev/ai-signal/src/mcp/server.mjs"],
+      "env": {
+        "SIGNAL_CACHE_PATH": "C:/dev/ai-signal/.ai-signal/hn-cache.json"
+      }
+    }
+  }
+}
+```
+
+For Claude Code: `claude mcp add ai-signal -- node C:/dev/ai-signal/src/mcp/server.mjs`.
