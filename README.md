@@ -79,7 +79,7 @@ The assistant does the reasoning. Signal provides clean local context.
 
 ```powershell
 pnpm dlx @vscode/vsce package
-code --install-extension ai-signal-0.1.0.vsix
+code --install-extension ai-signal-0.1.1.vsix
 ```
 
 Reload VS Code, then click `Signal` in the status bar and run `Signal: Refresh Hacker News`.

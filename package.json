@@ -1,7 +1,7 @@
 {
   "name": "ai-signal",
   "displayName": "Signal",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Local signal context for VS Code and AI assistants.",
   "license": "MIT",
