@@ -1,0 +1,105 @@
+{
+  "limitPerSource": 12,
+  "maxSourcesPerRun": 4,
+  "maxItems": 40,
+  "strictMatching": true,
+  "feeds": [
+    {
+      "name": "Cargo Bay",
+      "icon": "CB",
+      "description": "AstroJS, NodeJS, ReactJS, and TypeScript signals.",
+      "weight": 10,
+      "keywords": [
+        "astro",
+        "astrojs",
+        "node",
+        "node.js",
+        "nodejs",
+        "react",
+        "reactjs",
+        "typescript"
+      ],
+      "domains": [
+        "astro.build",
+        "nodejs.org",
+        "react.dev",
+        "typescriptlang.org"
+      ]
+    },
+    {
+      "name": "Cortex Feed",
+      "icon": "CX",
+      "description": "GitHub Copilot, Python, MCP, OpenCode, Perplexity, Cursor, Claude, Cloudflare, and agentic AI signals.",
+      "weight": 14,
+      "keywords": [
+        "agentic",
+        "agentic ai",
+        "anthropic",
+        "claude",
+        "claude ai",
+        "cloudflare",
+        "copilot",
+        "cursor",
+        "github copilot",
+        "llm",
+        "local llm",
+        "mcp",
+        "model context protocol",
+        "opencode",
+        "opencode cli",
+        "perplexity",
+        "perplexity ai",
+        "python",
+        "vibe coding"
+      ],
+      "domains": [
+        "anthropic.com",
+        "cloudflare.com",
+        "cursor.com",
+        "python.org"
+      ]
+    },
+    {
+      "name": "Deep Space Relay",
+      "icon": "DS",
+      "description": "GitKraken, KeePass, Brave, Codex, and VS Code signals.",
+      "weight": 8,
+      "keywords": [
+        "brave",
+        "brave browser",
+        "codex",
+        "openai codex",
+        "gitkraken",
+        "keepass",
+        "vs code",
+        "vscode"
+      ],
+      "domains": [
+        "brave.com",
+        "code.visualstudio.com",
+        "gitkraken.com",
+        "keepass.info"
+      ]
+    },
+    {
+      "name": "Nostromo Finance",
+      "icon": "NF",
+      "description": "PostgreSQL, SQL Server, Docker, MariaDB, and MongoDB signals.",
+      "weight": 9,
+      "keywords": [
+        "docker",
+        "mariadb",
+        "mongodb",
+        "postgres",
+        "postgresql",
+        "sql server"
+      ],
+      "domains": [
+        "docker.com",
+        "mariadb.org",
+        "mongodb.com",
+        "postgresql.org"
+      ]
+    }
+  ]
+}

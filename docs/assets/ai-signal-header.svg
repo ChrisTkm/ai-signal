@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">AI Signal</title>
+  <desc id="desc">A dark technical header for AI Signal, showing a local signal antenna, ranked feed lanes, and MCP context output.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#151515"/>
+      <stop offset="0.56" stop-color="#1a1c1d"/>
+      <stop offset="1" stop-color="#102126"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#202020" stop-opacity="0.96"/>
+      <stop offset="1" stop-color="#172529" stop-opacity="0.96"/>
+    </linearGradient>
+    <linearGradient id="signal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f2ce7e"/>
+      <stop offset="1" stop-color="#38bdf8"/>
+    </linearGradient>
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="10" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="1 0 0 0 0.95  0 1 0 0 0.75  0 0 1 0 0.38  0 0 0 0.45 0"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M44 0H0V44" fill="none" stroke="#f2ce7e" stroke-opacity="0.045" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="360" fill="url(#bg)"/>
+  <rect width="1200" height="360" fill="url(#grid)"/>
+  <path d="M0 304C164 274 264 322 431 290C603 257 672 189 846 216C1028 244 1076 294 1200 255V360H0Z" fill="#f97316" opacity="0.055"/>
+  <path d="M0 82C145 58 270 85 413 70C604 49 721 10 894 43C1030 69 1096 93 1200 66V0H0Z" fill="#38bdf8" opacity="0.035"/>
+
+  <g transform="translate(64 56)">
+    <rect x="0" y="0" width="1072" height="248" rx="18" fill="url(#panel)" stroke="#f2ce7e" stroke-opacity="0.18"/>
+    <rect x="22" y="22" width="304" height="204" rx="12" fill="#151515" stroke="#343434"/>
+    <rect x="52" y="54" width="96" height="10" rx="5" fill="#f2ce7e"/>
+    <rect x="52" y="86" width="220" height="8" rx="4" fill="#3b3b3b"/>
+    <rect x="52" y="114" width="196" height="8" rx="4" fill="#3b3b3b"/>
+    <rect x="52" y="142" width="236" height="8" rx="4" fill="#3b3b3b"/>
+    <rect x="52" y="170" width="162" height="8" rx="4" fill="#3b3b3b"/>
+    <g transform="translate(248 55)" filter="url(#softGlow)">
+      <circle cx="0" cy="0" r="9" fill="#f2ce7e"/>
+      <path d="M-34 0A34 34 0 0 1 34 0" fill="none" stroke="#f2ce7e" stroke-width="6" stroke-linecap="round" opacity="0.85"/>
+      <path d="M-58 0A58 58 0 0 1 58 0" fill="none" stroke="#38bdf8" stroke-width="5" stroke-linecap="round" opacity="0.62"/>
+      <path d="M-82 0A82 82 0 0 1 82 0" fill="none" stroke="#f2ce7e" stroke-width="4" stroke-linecap="round" opacity="0.34"/>
+    </g>
+
+    <g transform="translate(376 46)">
+      <text x="0" y="34" fill="#f2ce7e" font-family="Consolas, 'SFMono-Regular', monospace" font-size="18" font-weight="700" letter-spacing="2">AI SIGNAL</text>
+      <text x="0" y="86" fill="#f5f5f5" font-family="Segoe UI, Arial, sans-serif" font-size="44" font-weight="700">Local signal context</text>
+      <text x="0" y="128" fill="#f5f5f5" font-family="Segoe UI, Arial, sans-serif" font-size="44" font-weight="700">for AI assistants.</text>
+      <text x="0" y="166" fill="#b7b7b7" font-family="Segoe UI, Arial, sans-serif" font-size="18">VS Code status bar feed, deterministic ranking, local cache, MCP-ready output.</text>
+      <g transform="translate(0 194)" font-family="Consolas, 'SFMono-Regular', monospace" font-size="13" font-weight="700">
+        <rect x="0" y="0" width="82" height="28" rx="14" fill="#f2ce7e" fill-opacity="0.12" stroke="#f2ce7e" stroke-opacity="0.5"/>
+        <text x="20" y="19" fill="#f2ce7e">HN</text>
+        <rect x="96" y="0" width="90" height="28" rx="14" fill="#38bdf8" fill-opacity="0.12" stroke="#38bdf8" stroke-opacity="0.44"/>
+        <text x="120" y="19" fill="#38bdf8">MCP</text>
+        <rect x="200" y="0" width="132" height="28" rx="14" fill="#34d399" fill-opacity="0.10" stroke="#34d399" stroke-opacity="0.38"/>
+        <text x="220" y="19" fill="#34d399">LOCAL CACHE</text>
+      </g>
+    </g>
+
+    <g transform="translate(910 52)">
+      <rect x="0" y="0" width="114" height="144" rx="12" fill="#111" stroke="#303030"/>
+      <rect x="18" y="22" width="78" height="8" rx="4" fill="url(#signal)"/>
+      <rect x="18" y="50" width="52" height="8" rx="4" fill="#4b5563"/>
+      <rect x="18" y="76" width="72" height="8" rx="4" fill="#4b5563"/>
+      <rect x="18" y="102" width="42" height="8" rx="4" fill="#4b5563"/>
+      <path d="M-76 72H-18" stroke="#f2ce7e" stroke-width="2" stroke-dasharray="6 8" opacity="0.55"/>
+      <path d="M-38 112H-18" stroke="#38bdf8" stroke-width="2" stroke-dasharray="6 8" opacity="0.55"/>
+      <circle cx="-82" cy="72" r="6" fill="#f2ce7e"/>
+      <circle cx="-44" cy="112" r="6" fill="#38bdf8"/>
+    </g>
+  </g>
+</svg>

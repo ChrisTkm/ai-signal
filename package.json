@@ -1,0 +1,84 @@
+{
+  "name": "ai-signal",
+  "displayName": "Signal",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local signal context for VS Code and AI assistants.",
+  "license": "MIT",
+  "publisher": "local",
+  "author": "Chris Albornoz",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ChrisTkm/ai-signal.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ChrisTkm/ai-signal/issues"
+  },
+  "homepage": "https://github.com/ChrisTkm/ai-signal#readme",
+  "keywords": [
+    "hacker news",
+    "signals",
+    "status bar",
+    "mcp",
+    "developer news"
+  ],
+  "engines": {
+    "vscode": "^1.96.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:aiSignal.open",
+    "onCommand:aiSignal.refresh",
+    "onCommand:aiSignal.openDigest"
+  ],
+  "main": "./src/extension.cjs",
+  "contributes": {
+    "commands": [
+      {
+        "command": "aiSignal.open",
+        "title": "Signal: Open",
+        "category": "Signal"
+      },
+      {
+        "command": "aiSignal.refresh",
+        "title": "Signal: Refresh Hacker News",
+        "category": "Signal"
+      },
+      {
+        "command": "aiSignal.close",
+        "title": "Signal: Close",
+        "category": "Signal"
+      },
+      {
+        "command": "aiSignal.openDigest",
+        "title": "Signal: Open Digest",
+        "category": "Signal"
+      }
+    ],
+    "configuration": {
+      "title": "Signal",
+      "properties": {
+        "aiSignal.maxItems": {
+          "type": "number",
+          "minimum": 10,
+          "default": 50,
+          "description": "Maximum Hacker News items to keep in the local signal cache."
+        },
+        "aiSignal.lastViewColumn": {
+          "type": "number",
+          "default": 2,
+          "description": "Internal workspace setting used to reopen the AI Signal panel in the last editor column."
+        }
+      }
+    }
+  },
+  "scripts": {
+    "hn:smoke": "node scripts/hn-smoke.mjs",
+    "test": "node --test",
+    "check": "node --check scripts/hn-smoke.mjs && node --check src/extension.cjs && node --test"
+  },
+  "packageManager": "pnpm@10.0.0"
+}

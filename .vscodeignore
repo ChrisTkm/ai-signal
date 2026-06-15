@@ -1,0 +1,7 @@
+.git/**
+.vscode/**
+.ai-signal/**
+**/*.test.mjs
+.gitignore
+.vscodeignore
+.editorconfig
