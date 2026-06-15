@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/assets/ai-signal-header.svg" alt="AI Signal header">
+  <img src="docs/assets/ai-signal-header.png" alt="AI Signal header">
 </p>
 
 <h1 align="center">Signal</h1>
