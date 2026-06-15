@@ -71,14 +71,14 @@ Initial tools:
 
 The assistant does the reasoning. Signal provides clean local context.
 
-> **Status:** implemented as a zero-dependency stdio MCP server in [`src/mcp/`](src/mcp/). All five tools are live and read the local cache (read-only, no fetching during a request). Run it with `npm run mcp` and see [`docs/mcp.md`](docs/mcp.md) for the projected schema and client configuration.
+> **Status:** implemented as a zero-dependency stdio MCP server in [`src/mcp/`](src/mcp/). All five tools are live and read the local cache (read-only, no fetching during a request). Run it with `pnpm mcp` and see [`docs/mcp.md`](docs/mcp.md) for the projected schema and client configuration.
 
 ## Install
 
 ### From a packaged build (recommended)
 
 ```powershell
-npx --yes @vscode/vsce package
+pnpm dlx @vscode/vsce package
 code --install-extension ai-signal-0.1.0.vsix
 ```
 

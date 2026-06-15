@@ -133,7 +133,7 @@ Resolved design questions:
 ## Running the server
 
 ```powershell
-npm run mcp
+pnpm mcp
 # or directly:
 node src/mcp/server.mjs
 ```
